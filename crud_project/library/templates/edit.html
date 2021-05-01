@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+    <form method="POST" class="post-form" action="/update/{{book.id}}">
+        {% csrf_token %}
+        <div class="container">
+            <br>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-4">
+                    <h3>Update Details</h3>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Primary Id(read only):</label>
+                <div class="col-sm-4">
+                    <input type="text" name="id" id="id_id" required maxlength="20" value="{{ book.id }}" readonly/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Book ISBN:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="isbn" id="id_isbn" required maxlength="20" value="{{ book.isbn }}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Book Name:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="bname" id="id_bname" required maxlength="100"
+                        value="{{ book.bname }}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Book Author:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="bauthor" id="id_bauthor" required maxlength="254"
+                        value="{{ book.bauthor }}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Book Description:</label>
+                <div class="col-sm-4">
+                    <textarea name="bdesc" id="id_bdesc" cols="30" rows="10" required >
+                        {{ book.bdesc }}
+                    </textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Book Publisher: {{book.publisher}}</label>
+                <div class="col-sm-4">
+                    <select name="publisher" id="id_publisher" value="{{book.publisher}}">
+                        {% for x, y in pub_choice %}
+                        <option value="{{ x }}"{% if book.publisher == x %} selected{% endif %}>{{ y }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <!-- <input type="text" name="publisher" id="id_publisher" required maxlength="254"
+                        value="{{ book.publisher }}" /> -->
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Date of Action: {{ issue_date }}</label>
+                <div class="col-sm-4">
+                    <input type="date" name="bissuedate" id="id_bissuedate" required
+                        value={{issue_date}} />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Issue Type:</label>
+                <div class="col-sm-4">
+                    <ul name="bissue" id="id_bissue" required
+                    value="{{ book.bissue }}">
+                        
+                    {% for x, y in issue_choice %}
+                    <li> <input type="radio" name="bissue" value="{{ x }}"{% if book.bissue == x %} checked{% endif %}> <label for="{{ x }}"> {{ y }} </label></li>
+                    {% endfor %}
+                    
+                    <!-- checking for updates -->
+                    
+
+                        <!-- <li><input type="radio" name="bissue" id="available"  
+                            value="available" > <label for="available">Available</label></li>
+                        <li><input type="radio" name="bissue" id="issued"  
+                            value="issued" checked> <label for="issued">Issued</label></li>
+                        <li><input type="radio" name="bissue" id="ordered"  
+                            value="ordered"> <label for="ordered">Order Places</label></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Locations: {{book.location}} </label>
+                <div class="col-sm-4">
+                    <ul name="location" id="id_location" required
+                    value="{{ book.location }}">
+                        
+                    {% for x, y in loc_choice %}
+                    <li> <input type="checkbox" name="location" id="{{ x }}" value="{{ x }}"{% if x in book.location  %} checked{% endif %}> <label for="{{ x }}"> {{ y }} </label></li>
+                    {% endfor %}
+                    
+                        <!-- <li><input type="checkbox" name="location" id="MG_ROAD"  
+                            value="MG_ROAD" checked> <label for="MG_ROAD">MG_ROAD</label></li>
+                        <li><input type="checkbox" name="location" id="Karkhana"  
+                            value="Karkhana"> <label for="Karkhana">Karkhana</label></li>
+                        <li><input type="checkbox" name="location" id="Hitech_City"  
+                            value="Hitech_City"> <label for="Hitech_City">Hi-Tech City</label></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
