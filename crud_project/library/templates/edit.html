@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form method="POST" class="post-form" action="/update/{{book.id}}">
+    <form method="POST" class="post-form" action="/update/{{book.id}}" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="container">
             <br>
@@ -22,7 +22,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Primary Id(read only):</label>
                 <div class="col-sm-4">
-                    <input type="text" name="id" id="id_id" required maxlength="20" value="{{ book.id }}" readonly/>
+                    {{form.image}}
+                    <!-- <input type="text" name="id" id="id_id" required maxlength="20" value="{{ book.id }}" readonly/> -->
                 </div>
             </div>
             <div class="form-group row">
@@ -36,6 +37,12 @@
                 <div class="col-sm-4">
                     <input type="text" name="bname" id="id_bname" required maxlength="100"
                         value="{{ book.bname }}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Book Image:</label>
+                <div class="col-sm-4">
+                    <input type="file" name="image" id="id_image" accept="image/*"/>
                 </div>
             </div>
             <div class="form-group row">

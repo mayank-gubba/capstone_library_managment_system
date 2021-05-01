@@ -15,6 +15,7 @@
                 <th>Book Id</th>
                 <th>Book ISBN</th>
                 <th>Book Name</th>
+                <th>Book Image</th>
                 <th>Book Author</th>
                 <th>Book Description</th>
                 <th>Book Publisher</th>
@@ -30,6 +31,7 @@
                 <td>{{ book.id }}</td>
                 <td>{{ book.isbn }}</td>
                 <td>{{ book.bname }}</td>
+                <td><img src="{{book.image.url}}" alt="{{book.image}}" style="max-height:300px"></td>
                 <td>{{ book.bauthor }}</td>
                 <td>{{ book.bdesc }}</td>
                 <td>{{ book.publisher }}</td>

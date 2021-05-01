@@ -11,7 +11,7 @@ from django.forms import NumberInput
 # ISSUE_CHOICES = [
 #     ('available', 'Available'),
 #     ('issued', 'Issued'),
-#     ('ordered', 'Order Places'),
+#     ('ordered', 'Order Placed'),
 # ]
 
 
@@ -24,7 +24,7 @@ class BookForm(forms.ModelForm):
     ISSUE_CHOICES = [
     ('available', 'Available'),
     ('issued', 'Issued'),
-    ('ordered', 'Order Places'),
+    ('ordered', 'Order Placed'),
     ]
     location = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=LOCATION_CHOICES)
     bissuedate = forms.DateField(widget=NumberInput(attrs={'type': 'date'}))

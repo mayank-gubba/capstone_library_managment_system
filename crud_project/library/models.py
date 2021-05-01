@@ -17,8 +17,9 @@ class Book(models.Model):
     bname = models.CharField(max_length=100)  
     bdesc = models.TextField()
     bauthor = models.CharField(max_length=15)
-    bissuedate = models.DateField()
+    bissuedate = models.DateField(null=True)
     bissue = models.CharField(max_length=20)
+    image = models.ImageField(upload_to='images',null=True)
     location= ArrayField(
         models.CharField(max_length=40, blank=True),
         size=3, null=True

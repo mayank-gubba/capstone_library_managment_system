@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form method="POST" class="post-form" action="/lib">
+    <form method="POST" class="post-form" action="/lib" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="container">
             <br>
@@ -29,6 +29,12 @@
                 <label class="col-sm-2 col-form-label">Book Name:</label>
                 <div class="col-sm-4">
                     {{ form.bname }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Book Image:</label>
+                <div class="col-sm-4">
+                    {{ form.image }}
                 </div>
             </div>
             <div class="form-group row">

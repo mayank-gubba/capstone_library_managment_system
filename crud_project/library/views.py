@@ -4,12 +4,13 @@ from library.models import Book
 # Create your views here.
 def lib(request):  
     if request.method == "POST":  
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, request.FILES)
         print(form.errors)  
         if form.is_valid():  
             try:  
-                form.save()  
-                return redirect('/show')  
+                form.save()
+                img_obj = form.instance
+                return redirect('/show',{'img_obj': img_obj})  
             except:  
                 pass  
     else:  
@@ -27,11 +28,12 @@ def edit(request, id):
 
 def update(request, id):  
     book = Book.objects.get(id=id)
-    form = BookForm(request.POST, instance = book)
+    form = BookForm(request.POST, request.FILES, instance = book)
     print(form.errors)
     if form.is_valid():
+        img_obj = form.instance
         form.save()
-        return redirect("/show")  
+        return redirect("/show",{'img_obj': img_obj})  
     return render(request, 'edit.html', {'book': book})
 
 def destroy(request, id):  
