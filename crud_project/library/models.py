@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # PUBLISHER_CHOICE = (
 #     ("McGraw_hill","McGraw Hill"),
@@ -13,10 +14,11 @@ class Book(models.Model):
     ("Westland","Westland"),
     ("Macmillan","Macmillan"),
     )
-    isbn = models.CharField(max_length=20)  
+    isbn = models.PositiveBigIntegerField(validators=[MinValueValidator(1000000000000),MaxValueValidator(9999999999999)])  
     bname = models.CharField(max_length=100)  
     bdesc = models.TextField()
     bauthor = models.CharField(max_length=15)
+    bprice = models.FloatField(validators=[MinValueValidator(0.00)],null=True)
     bissuedate = models.DateField(null=True)
     bissue = models.CharField(max_length=20)
     image = models.ImageField(upload_to='images',null=True)
